@@ -3,19 +3,30 @@ package states;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
+import sprites.Disparo;
+import sprites.Player;
 
 class PlayState extends FlxState
 {
+	private var player : Player; 
+	
 	override public function create():Void
 	{
 		super.create();
+		
+		player = new Player(60, 120);
+		
+		add(player);
+		
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		
 	}
 }
