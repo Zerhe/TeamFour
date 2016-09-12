@@ -8,25 +8,28 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import sprites.Disparo;
+import sprites.Enemy;
 import sprites.Player;
 
 class PlayState extends FlxState
 {
-	private var player : Player; 
+	private var player : Player;
+	private var enemigos : Enemy;
 	
 	override public function create():Void
 	{
 		super.create();
 		
 		player = new Player(60, 120);
+		enemigos = new Enemy(20, 20);
 		
+		add(enemigos);
 		add(player);
 		
 	}
 
 	override public function update(elapsed:Float):Void
 	{
-		super.update(elapsed);
-		
+		super.update(elapsed);	
 	}
 }

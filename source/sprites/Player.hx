@@ -17,7 +17,7 @@ class Player extends FlxSprite
 		super(X, Y, SimpleGraphic);
 		
 		makeGraphic(16, 16, 0xFFFF0000);
-		loadGraphic(AssetPaths.c_png);
+		loadGraphic(AssetPaths.c__png);
 		
 	}
 	override public function update(elapsed:Float):Void
@@ -25,21 +25,20 @@ class Player extends FlxSprite
 		super.update(elapsed);
 		
 		if (FlxG.keys.pressed.LEFT) 
-			x -= 300 * FlxG.elapsed;
+			x -= 150 * FlxG.elapsed;
 		if (FlxG.keys.pressed.RIGHT) 
-			x += 300 * FlxG.elapsed;
+			x += 150 * FlxG.elapsed;
 
 		if (FlxG.keys.justPressed.SPACE)
 		{
 			if (Reg.cantidadDisparo == 0)
 			{
 				var b : Disparo = new Disparo();
-				b.x = x + width / 3;
-				b.y = y + height / 2;
+				b.x = x + 6;
+				b.y = y ;
 				Reg.cantidadDisparo += 1;
 				FlxG.state.add(b);
 			}
-			
 		}
 		
 		if(x > (FlxG.width - this.width))
