@@ -1,7 +1,7 @@
 package sprites;
 
-import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.FlxSprite;
 import flixel.FlxG;
 import Reg;
 
@@ -11,7 +11,8 @@ import Reg;
  */
 class Player extends FlxSprite
 {
-
+	var cartilos = 0;
+	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
@@ -33,11 +34,12 @@ class Player extends FlxSprite
 		{
 			if (Reg.cantidadDisparo == 0)
 			{
-				var b : Disparo = new Disparo();
-				b.x = x + 6;
-				b.y = y ;
+				var disparo : Disparo = new Disparo();
+				disparo.x = x + 6;
+				disparo.y = y ;
 				Reg.cantidadDisparo += 1;
-				FlxG.state.add(b);
+				Reg.setObjeto(disparo);
+				FlxG.state.add(disparo);
 			}
 		}
 		
@@ -46,4 +48,8 @@ class Player extends FlxSprite
 			else if (x < 0)
 				x = 0;
 	}
+	override public function destroy(): Void
+	{
+		super.destroy();
+	}	
 }

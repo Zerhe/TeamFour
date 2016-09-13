@@ -31,5 +31,11 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);	
+		
+		if (FlxG.overlap(enemigos, Reg._disparo))
+		{
+			enemigos.destroy();
+			Reg.collisionBalaEnemigo = true;
+		}
 	}
 }

@@ -1,7 +1,7 @@
 package sprites;
 
-import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.FlxSprite;
 import flixel.FlxG;
 import Reg;
 
@@ -17,10 +17,15 @@ class Enemy extends FlxSprite
 		super(X, Y, SimpleGraphic);
 	
 		makeGraphic(16, 16);
+		velocity.x = 5;
 	}
 	
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);		
 	}
+	override public function destroy(): Void
+	{
+		super.destroy();
+	}	
 }
