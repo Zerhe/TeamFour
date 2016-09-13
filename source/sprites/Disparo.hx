@@ -28,8 +28,9 @@ class Disparo extends FlxSprite
 	}
 	override public function destroy(): Void
 	{
-		Reg.cantidadDisparo -= 1;
 		super.destroy();
+		Reg.cantidadDisparo -= 1;
+		Reg.collisionBalaEnemigo == false; 
 	}	
 }
 	

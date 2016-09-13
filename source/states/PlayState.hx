@@ -37,5 +37,9 @@ class PlayState extends FlxState
 			enemigos.destroy();
 			Reg.collisionBalaEnemigo = true;
 		}
+		if (FlxG.keys.justPressed.R) 
+		{
+			FlxG.resetState();        
+		}
 	}
 }
