@@ -11,5 +11,6 @@ class Reg
 {	
 	static public var cantidadDisparo:Int = 0;
 	static public var _disparo:Disparo;
+	static public var _Y : Float = 0;
 	
 }
