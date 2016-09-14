@@ -11,7 +11,12 @@ import sprites.Disparo;
 class Reg
 {	
 	static public var cantidadDisparo:Int = 0;
+<<<<<<< HEAD
 	static public var disparo:Disparo;
 	static public var disparoEnemigo :DisparoEnemigo;
+=======
+	static public var _disparo:Disparo;
+	static public var _Y : Float = 0;
+>>>>>>> origin/master
 	
 }

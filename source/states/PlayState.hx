@@ -13,15 +13,38 @@ import sprites.Player;
 
 class PlayState extends FlxState
 {
+	private var _x = 20;
+	private var _y = 10;
+	
 	private var player : Player;
 	private var enemigos : Enemy;
+	private var enemy = new FlxTypedGroup<Enemy>();
 	
 	override public function create():Void
 	{
 		super.create();
 		
 		player = new Player(60, 120);
-		enemigos = new Enemy(20, 20);
+		enemigos = new Enemy(10, 10);
+		for (i in 0 ... 15)
+		{
+			enemy.members[i] = new Enemy(_x, _y);
+			enemy.add(enemy.members[i]);
+			add(enemy.members[i]);
+			
+			if (i == 4)
+			{
+				_y += 20;
+				_x = 0;
+			}
+			else if (i == 9)
+			{
+				_y += 20;
+				_x = 0;
+			}
+			
+			_x += 20;
+		}
 		
 		add(enemigos);
 		add(player);
