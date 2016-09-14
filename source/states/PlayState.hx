@@ -35,7 +35,7 @@ class PlayState extends FlxState
 		if (FlxG.overlap(enemigos, Reg._disparo))
 		{
 			enemigos.destroy();
-			Reg.collisionBalaEnemigo = true;
+			Reg._disparo.destroy();
 		}
 		if (FlxG.keys.justPressed.R) 
 		{

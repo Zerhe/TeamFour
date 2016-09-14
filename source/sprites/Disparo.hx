@@ -23,14 +23,13 @@ class Disparo extends FlxSprite
 	{
 		super.update(elapsed);
 		
-		if (y < 0 || Reg.collisionBalaEnemigo == true)
+		if (y < 0)
 			destroy();
 	}
 	override public function destroy(): Void
 	{
-		super.destroy();
 		Reg.cantidadDisparo -= 1;
-		Reg.collisionBalaEnemigo == false; 
+		super.destroy();
 	}	
 }
 	
