@@ -11,26 +11,42 @@ import Reg;
  */
 class Enemy extends FlxSprite
 {
-	var conteo : Float = 0;
+	var timerCount: Float = 0;
+	var maxTimerCounter: Float = 1;
+	var ancho : Bool = false;
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
 	
 		makeGraphic(16, 16);
-		//velocity.x = 5;	
 	}
 	
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		trace(elapsed);
 		
-		conteo += elapsed;
-		if (conteo == 2)
+		timerCount += elapsed;
+		if (timerCount > maxTimerCounter)
 		{
-			x += 50;
-			conteo = 0;
+			if (x > FlxG.width - this.width)
+			{
+				y += 20;
+				ancho = true;
+			}else if (x < 0)
+			{
+				y += 20;
+				ancho = false;
+			}
+			if (ancho == true)
+			{
+				x -= 10;
+			}else
+			{
+				x += 10;
+			}
+			
+			timerCount = 0;
 		}
 	}
 	override public function destroy(): Void

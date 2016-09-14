@@ -21,7 +21,7 @@ class PlayState extends FlxState
 		super.create();
 		
 		player = new Player(60, 120);
-		enemigos = new Enemy(20, 20);
+		enemigos = new Enemy(10, 10);
 		
 		add(enemigos);
 		add(player);
