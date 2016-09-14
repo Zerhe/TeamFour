@@ -32,14 +32,15 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);	
 		
-		if (FlxG.overlap(enemigos, Reg._disparo))
+		if (FlxG.overlap(enemigos, Reg.disparo))
 		{
 			enemigos.destroy();
-			Reg._disparo.destroy();
+			Reg.disparo.destroy();
 		}
 		if (FlxG.keys.justPressed.R) 
 		{
-			FlxG.resetState();        
+			FlxG.resetState();  
+			Reg.cantidadDisparo:Int = 0
 		}
 	}
 }

@@ -11,7 +11,6 @@ import Reg;
  */
 class Player extends FlxSprite
 {
-	var cartilos = 0;
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
@@ -34,11 +33,11 @@ class Player extends FlxSprite
 		{
 			if (Reg.cantidadDisparo == 0)
 			{
-				Reg._disparo =  new Disparo();
-				Reg._disparo.x = x + 6;
-				Reg._disparo.y = y ;
+				Reg.disparo =  new Disparo();
+				Reg.disparo.x = x + 6;
+				Reg.disparo.y = y ;
 				Reg.cantidadDisparo += 1;
-				FlxG.state.add(Reg._disparo);
+				FlxG.state.add(Reg.disparo);
 			}
 		}
 		
