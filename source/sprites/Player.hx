@@ -25,8 +25,6 @@ class Player extends FlxSprite
 	{
 		super.update(elapsed);
 		
-		trace(Reg.cantidadDisparo);
-		
 		if (FlxG.keys.pressed.LEFT) 
 			x -= 150 * FlxG.elapsed;
 		if (FlxG.keys.pressed.RIGHT) 

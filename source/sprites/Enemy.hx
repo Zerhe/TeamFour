@@ -24,7 +24,7 @@ class Enemy extends FlxSprite
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		//	trace(elapsed);
+		trace(elapsed);
 		
 		conteo += elapsed;
 		if (conteo == 2)
