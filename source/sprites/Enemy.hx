@@ -25,6 +25,10 @@ class Enemy extends FlxSprite
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+<<<<<<< HEAD
+=======
+		//	trace(elapsed);
+>>>>>>> origin/master
 		
 		timerCount += elapsed;
 		if (timerCount > maxTimerCounter)

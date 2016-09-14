@@ -25,6 +25,8 @@ class Player extends FlxSprite
 	{
 		super.update(elapsed);
 		
+		trace(Reg.cantidadDisparo);
+		
 		if (FlxG.keys.pressed.LEFT) 
 			x -= 150 * FlxG.elapsed;
 		if (FlxG.keys.pressed.RIGHT) 
@@ -34,12 +36,11 @@ class Player extends FlxSprite
 		{
 			if (Reg.cantidadDisparo == 0)
 			{
-				var disparo : Disparo = new Disparo();
-				disparo.x = x + 6;
-				disparo.y = y ;
+				Reg._disparo =  new Disparo();
+				Reg._disparo.x = x + 6;
+				Reg._disparo.y = y ;
 				Reg.cantidadDisparo += 1;
-				Reg.setObjeto(disparo);
-				FlxG.state.add(disparo);
+				FlxG.state.add(Reg._disparo);
 			}
 		}
 		
