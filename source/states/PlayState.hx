@@ -7,9 +7,11 @@ import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
+import sprites.DisparoEnemigo;
 import sprites.Disparo;
 import sprites.Enemy;
 import sprites.Player;
+import Reg;
 
 class PlayState extends FlxState
 {
@@ -17,7 +19,6 @@ class PlayState extends FlxState
 	private var _y = 10;
 	
 	private var player : Player;
-	private var enemigos : Enemy;
 	private var enemy = new FlxTypedGroup<Enemy>();
 	
 	override public function create():Void
@@ -25,7 +26,6 @@ class PlayState extends FlxState
 		super.create();
 		
 		player = new Player(60, 120);
-		enemigos = new Enemy(10, 10);
 		for (i in 0 ... 15)
 		{
 			enemy.members[i] = new Enemy(_x, _y);
@@ -45,25 +45,31 @@ class PlayState extends FlxState
 			
 			_x += 20;
 		}
-		
-		add(enemigos);
 		add(player);
-		
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);	
 		
-		if (FlxG.overlap(enemigos, Reg.disparo))
+		for (i in 0 ... 15)
 		{
-			enemigos.destroy();
-			Reg.disparo.destroy();
+			if (FlxG.overlap(enemy.members[i], Reg.disparo))
+				{
+					enemy.members[i].destroy();
+					Reg.disparo.destroy();
+				}
+		}
+		if (FlxG.overlap(player, Reg.disparoEnemigo))
+		{
+			trace("pepito");
+			player.destroy();
+			Reg.disparoEnemigo.destroy();
 		}
 		if (FlxG.keys.justPressed.R) 
 		{
 			FlxG.resetState();  
-			Reg.cantidadDisparo:Int = 0
+			Reg.cantidadDisparo = 0;
 		}
 	}
 }

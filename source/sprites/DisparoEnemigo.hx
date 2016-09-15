@@ -16,7 +16,7 @@ class DisparoEnemigo extends FlxSprite
 		super(X, Y, SimpleGraphic);
 		makeGraphic(4,4);
 		color = 0xFF0000;
-		velocity.y = 170;			
+		velocity.y = 100;			
 	}
 	override public function update(elapsed:Float):Void
 	{
