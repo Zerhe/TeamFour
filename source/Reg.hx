@@ -13,10 +13,11 @@ import sprites.Disparo;
 class Reg
 {	
 	static public var cantidadDisparo:Int = 0;
-	static public var enemigoColisionDerecha:Int = 0;
-	static public var enemigoColisionIzquierda:Int = 0;
+	static public var enemigoColisionDerecha:Enemy;
+	static public var enemigoColisionIzquierda:Enemy;
 	static public var disparo:Disparo;
 	static public var disparoEnemigo :DisparoEnemigo;
+	static public var movimiento:Bool = false;
 
 	
 	static public function verificarEnemigo(enemy : FlxTypedGroup<Enemy>) : Void
@@ -25,13 +26,13 @@ class Reg
 		{
 			trace(i);
 			if(enemy.members[i] != null)
-				enemigoColisionDerecha = i;
+				enemigoColisionDerecha = enemy.members[i];
 		}
 		for (i in new DecIter(15, 0))
 		{
 			trace(i);
 			if(enemy.members[i] != null)
-				enemigoColisionIzquierda = i;
+				enemigoColisionIzquierda = enemy.members[i];
 		}
 	}
 }

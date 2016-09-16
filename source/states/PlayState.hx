@@ -15,7 +15,7 @@ import Reg;
 
 class PlayState extends FlxState
 {
-	private var _x = 20;
+	private var _x = 18;
 	private var _y = 20;
 	
 	private var player : Player;
@@ -51,13 +51,12 @@ class PlayState extends FlxState
 			_y += 20;
 		}
 		add(player);
+		Reg.verificarEnemigo(enemy);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		
-		Reg.verificarEnemigo(enemy);
 		
 		for (i in 0 ... 15)
 		{
@@ -65,6 +64,7 @@ class PlayState extends FlxState
 			{
 				enemy.members[i].destroy();
 				Reg.disparo.destroy();
+				Reg.verificarEnemigo(enemy);
 			}
 			if (FlxG.overlap(player, enemy.members[i].getDisparo()))
 			{

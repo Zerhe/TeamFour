@@ -14,8 +14,8 @@ class Enemy extends FlxSprite
 {
 	private var disparo : DisparoEnemigo;
 	private var random : FlxRandom;
-	//private var timerCount: Float = 0;
-	//private var maxTimerCounter: Float = 1;
+	private var timerCount: Float = 0;
+	private var maxTimerCounter: Float = 1;
 	//private var cont : Float = 0;
 	
 	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset) 
@@ -46,24 +46,30 @@ class Enemy extends FlxSprite
 			FlxG.state.add(disparo);
 		}
 			
-		/*timerCount += elapsed;
-		cont += elapsed;
+		timerCount += elapsed;
+		//cont += elapsed;
 		if (timerCount > maxTimerCounter)
 		{
-			if (cont < 4)
+			if (Reg.enemigoColisionDerecha.x > FlxG.width - Reg.enemigoColisionDerecha.width)
+			{
+				x -= 10;
+				Reg.movimiento = true;
+			}
+			else if (Reg.enemigoColisionIzquierda.x <= 0)
 			{
 				x += 10;
+				Reg.movimiento = false;
 			}
-			else if (cont > 6)
+			else if (Reg.enemigoColisionIzquierda.x < FlxG.width && Reg.movimiento == false)
+			{
+				x += 10;	
+			}
+			else if (Reg.enemigoColisionDerecha.x > 0 && Reg.movimiento == true)
 			{
 				x -= 10;
 			}
-			if (cont > 9)
-			{
-				cont = 0;	
-			}
 			timerCount = 0;
-		}*/
+		}
 	}
 	override public function destroy(): Void
 	{
