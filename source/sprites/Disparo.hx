@@ -16,7 +16,7 @@ class Disparo extends FlxSprite
 		super(X, Y, SimpleGraphic);
 		makeGraphic(4,4);
 		color = 0xFF0000;
-		velocity.y = -200;			
+		velocity.y = -200;
 	}	
 	override public function update(elapsed:Float):Void
 	{

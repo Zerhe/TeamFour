@@ -16,7 +16,7 @@ import Reg;
 class PlayState extends FlxState
 {
 	private var _x = 20;
-	private var _y = 10;
+	private var _y = 20;
 	
 	private var player : Player;
 	private var enemy = new FlxTypedGroup<Enemy>();
@@ -32,44 +32,52 @@ class PlayState extends FlxState
 			enemy.add(enemy.members[i]);
 			add(enemy.members[i]);
 			
-			if (i == 4)
+			switch (i)
 			{
-				_y += 20;
-				_x = 0;
-			}
-			else if (i == 9)
-			{
-				_y += 20;
-				_x = 0;
+				case 2:
+					_x += 20;
+					_y = 0;
+				case 5:
+					_x += 20;
+					_y = 0;
+				case 8:
+					_x += 20;
+					_y = 0;
+				case 11:
+					_x += 20;
+					_y = 0;
 			}
 			
-			_x += 20;
+			_y += 20;
 		}
 		add(player);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
-		super.update(elapsed);	
+		super.update(elapsed);
+		
+		Reg.verificarEnemigo(enemy);
 		
 		for (i in 0 ... 15)
 		{
 			if (FlxG.overlap(enemy.members[i], Reg.disparo))
-				{
-					enemy.members[i].destroy();
-					Reg.disparo.destroy();
-				}
+			{
+				enemy.members[i].destroy();
+				Reg.disparo.destroy();
+			}
+			if (FlxG.overlap(player, enemy.members[i].getDisparo()))
+			{
+				trace("pepito");
+				player.destroy();
+				enemy.members[i].destroyDisparo();
+			}
 		}
-		if (FlxG.overlap(player, Reg.disparoEnemigo))
-		{
-			trace("pepito");
-			player.destroy();
-			Reg.disparoEnemigo.destroy();
-		}
+		
 		if (FlxG.keys.justPressed.R) 
 		{
-			FlxG.resetState();  
 			Reg.cantidadDisparo = 0;
+			FlxG.resetState();  
 		}
 	}
 }

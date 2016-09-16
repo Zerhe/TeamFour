@@ -12,10 +12,11 @@ import Reg;
  */
 class Enemy extends FlxSprite
 {
+	private var disparo : DisparoEnemigo;
 	private var random : FlxRandom;
-	private var timerCount: Float = 0;
-	private var maxTimerCounter: Float = 1;
-	private var cont : Float = 0;
+	//private var timerCount: Float = 0;
+	//private var maxTimerCounter: Float = 1;
+	//private var cont : Float = 0;
 	
 	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
@@ -24,19 +25,27 @@ class Enemy extends FlxSprite
 		makeGraphic(16, 16);
 		random = new FlxRandom();
 	}
-	
+	public function getDisparo() : DisparoEnemigo
+	{
+		return disparo;
+	}
+	public function destroyDisparo() : Void
+	{
+		disparo.destroy();
+	}	
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
 		
 		if (random.int(1, 900) == 3)
 		{
-			Reg.disparoEnemigo = new DisparoEnemigo();
-			Reg.disparoEnemigo.x = x + 6;
-			Reg.disparoEnemigo.y = y + 16;
-			FlxG.state.add(Reg.disparoEnemigo);
-		}			  
-		
+			disparo = Reg.disparoEnemigo;
+			disparo = new DisparoEnemigo();
+			disparo.x = x + 6;
+			disparo.y = y + 16;
+			FlxG.state.add(disparo);
+		}
+			
 		/*timerCount += elapsed;
 		cont += elapsed;
 		if (timerCount > maxTimerCounter)
