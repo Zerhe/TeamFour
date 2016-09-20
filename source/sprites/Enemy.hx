@@ -22,7 +22,9 @@ class Enemy extends FlxSprite
 	{
 		super(X, Y, SimpleGraphic);
 	
-		makeGraphic(16, 16);
+		loadGraphic(AssetPaths.Enemigo01__png, true, 16, 16);
+		animation.add("move", [0, 1],3 , true);
+		animation.play("move");
 		velocity.x = 20;
 		random = new FlxRandom();
 	}
@@ -37,7 +39,7 @@ class Enemy extends FlxSprite
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		
+					
 		if (random.int(1, 300) == 3)
 		{
 			disparo = Reg.disparoEnemigo;

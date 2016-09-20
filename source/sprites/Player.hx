@@ -16,8 +16,7 @@ class Player extends FlxSprite
 	{
 		super(X, Y, SimpleGraphic);
 		
-		makeGraphic(16, 16, 0xFFFF0000);
-		loadGraphic(AssetPaths.c__png);
+		loadGraphic(AssetPaths.chutulu__png,16,16);
 		
 	}
 	override public function update(elapsed:Float):Void

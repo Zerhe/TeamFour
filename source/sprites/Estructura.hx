@@ -11,7 +11,7 @@ import Reg;
  */
 class Estructura extends FlxSprite
 {
-	private var resistencia : Int = 500;
+	private var resistencia : Int = 3;
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
