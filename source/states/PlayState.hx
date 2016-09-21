@@ -1,8 +1,10 @@
 package states;
 
+import flash.system.System;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.math.FlxRandom;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
@@ -12,6 +14,7 @@ import states.GameOver;
 import sprites.DisparoEnemigo;
 import sprites.Disparo;
 import sprites.Enemy;
+import sprites.Ovni;
 import sprites.Estructura;
 import sprites.Player;
 import sprites.Vidas;
@@ -27,7 +30,9 @@ class PlayState extends FlxState
 	private var score:Int = 0;
 	private var txtScore : FlxText;
 	
+	private var random : FlxRandom;
 	private var player:Player;
+	private var ovni:Ovni;
 	private var enemy = new FlxTypedGroup<Enemy>();
 	private var estructura = new FlxTypedGroup<Estructura>();
 	private var sprVidas = new FlxTypedGroup<Vidas>();
@@ -36,10 +41,13 @@ class PlayState extends FlxState
 	{
 		super.create();
 		
+		random = new FlxRandom();
 		txtScore = new FlxText(0, 5, 0, "Score : " + Std.string(score), 8);
 		add(txtScore);
 		player = new Player(60, 120);
 		add(player);
+		ovni = new Ovni(-200, 5);
+		add(ovni);
 		
 		for (i in 0 ... 15)
 		{
@@ -140,6 +148,20 @@ class PlayState extends FlxState
 				}
 			}
 		}
+		if (FlxG.overlap(ovni, Reg.disparo))
+		{
+			ovni.destroy();
+			ovni = new Ovni(-200, 5);
+			add(ovni);
+			Reg.disparo.destroy();
+			score += random.int(1, 300);
+		}
+		if (ovni.x > FlxG.width)
+		{
+			ovni.destroy();
+			ovni = new Ovni(-200, 5);
+			add(ovni);
+		}
 		if (FlxG.keys.justPressed.R) 
 		{
 			Reg.cantidadDisparo = 0;
@@ -148,6 +170,10 @@ class PlayState extends FlxState
 				Reg.verificarVivos[i] = 1;
 			}
 			FlxG.resetState();  
+		}
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			System.exit(0);
 		}
 	}
 }

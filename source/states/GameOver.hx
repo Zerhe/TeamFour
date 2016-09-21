@@ -1,5 +1,6 @@
 package states;
 
+import flash.system.System;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -24,7 +25,10 @@ class GameOver extends FlxState
 		{
 			FlxG.switchState(new PlayState());
 		}
-			
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			System.exit(0);
+		}	
 	}
 	
 }
