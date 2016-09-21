@@ -52,6 +52,7 @@ class Enemy extends FlxSprite
 	}
 	override public function destroy(): Void
 	{
+		Reg.enemigosVivos -= 1;
 		super.destroy();
 	}	
 }

@@ -17,6 +17,7 @@ class Reg
 	static public var disparoEnemigo:DisparoEnemigo;
 	static public var enemigo:FlxTypedGroup<Enemy>;
 	static public var verificarVivos = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+	static public var enemigosVivos = 15;
 	
 	static public function verificarEnemigoIzq() : Void
 	{

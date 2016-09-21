@@ -41,12 +41,13 @@ class PlayState extends FlxState
 	{
 		super.create();
 		
+		Reg.enemigosVivos = 15;
 		random = new FlxRandom();
 		txtScore = new FlxText(0, 5, 0, "Score : " + Std.string(score), 8);
 		add(txtScore);
 		player = new Player(60, 120);
 		add(player);
-		ovni = new Ovni(-200, 5);
+		ovni = new Ovni(-300, 5);
 		add(ovni);
 		
 		for (i in 0 ... 15)
@@ -96,6 +97,7 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 		
+		trace(Reg.enemigosVivos);
 		Reg.enemigo = enemy;
 		txtScore.destroy();
 		txtScore = new FlxText(0, 5, 0, "Score : " + Std.string(score), 8);
@@ -116,7 +118,6 @@ class PlayState extends FlxState
 			}
 			if (FlxG.overlap(player, enemy.members[i].getDisparo()))
 			{
-				trace("pepito");
 				sprVidas.members[player.getVidas() - 1].destroy();
 				player.restarVidas(1);
 				enemy.members[i].destroyDisparo();
@@ -151,7 +152,7 @@ class PlayState extends FlxState
 		if (FlxG.overlap(ovni, Reg.disparo))
 		{
 			ovni.destroy();
-			ovni = new Ovni(-200, 5);
+			ovni = new Ovni(-300, 5);
 			add(ovni);
 			Reg.disparo.destroy();
 			score += random.int(1, 300);
@@ -159,8 +160,21 @@ class PlayState extends FlxState
 		if (ovni.x > FlxG.width)
 		{
 			ovni.destroy();
-			ovni = new Ovni(-200, 5);
+			ovni = new Ovni(-300, 5);
 			add(ovni);
+		}
+		if (Reg.enemigosVivos == 0)
+		{
+			HighScores.verificarScore == false;
+			for (i in 0...10)
+			{
+				if (HighScores.score[i] == 0 && HighScores.verificarScore == false)
+				{
+					HighScores.score[i] = score;
+					HighScores.verificarScore == true;
+				}
+			}
+			FlxG.switchState(new HighScores());
 		}
 		if (FlxG.keys.justPressed.R) 
 		{

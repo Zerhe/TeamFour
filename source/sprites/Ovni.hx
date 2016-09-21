@@ -19,7 +19,7 @@ class Ovni extends FlxSprite
 		loadGraphic(AssetPaths.Enemigo04__png, true, 16, 16);
 		animation.add("move", [0, 1, 2], 3, true);
 		animation.play("move");
-		velocity.x = 40;
+		velocity.x = 80;
 		
 	}
 	override public function destroy(): Void
