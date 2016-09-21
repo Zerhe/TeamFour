@@ -4,6 +4,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import Reg;
+import states.GameOver;
 
 /**
  * ...
@@ -54,7 +55,7 @@ class Player extends FlxSprite
 			else if (x < 0)
 				x = 0;
 		if (vidas == 0)
-		destroy();
+			FlxG.switchState(new GameOver());
 	}
 	override public function destroy(): Void
 	{

@@ -1,5 +1,7 @@
 package states;
 
+import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
 
 /**
@@ -8,10 +10,21 @@ import flixel.FlxState;
  */
 class GameOver extends FlxState
 {
-
-	public function new() 
+	private var fondo:FlxSprite;
+	override public function create(): Void 
 	{
+		fondo = new FlxSprite(0, 0, 'assets/images/GameOver.png');
+		add(fondo);	
+	}
+	override public function update(elapsed:Float):Void
+	{
+		super.update(elapsed);
 		
+		if (FlxG.keys.pressed.SPACE)
+		{
+			FlxG.switchState(new PlayState());
+		}
+			
 	}
 	
 }

@@ -11,12 +11,14 @@ import states.PlayState;
 
 class MenuState extends FlxState
 {
+	private var fondo:FlxSprite;
 	override public function create():Void
 	{
 		super.create();
 		
+		fondo = new FlxSprite(0, 0, 'assets/images/menu.png');
+		add(fondo);
 	}
-
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);

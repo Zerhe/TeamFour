@@ -8,6 +8,7 @@ import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
+import states.GameOver;
 import sprites.DisparoEnemigo;
 import sprites.Disparo;
 import sprites.Enemy;

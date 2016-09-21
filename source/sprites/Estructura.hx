@@ -17,7 +17,6 @@ class Estructura extends FlxSprite
 	{
 		super(X, Y, SimpleGraphic);
 		loadGraphic(AssetPaths.Estructuras__png, true, 16, 16);
-		//color = 0xFF0000;
 	}
 	public function recibirDanio(a : Int)
 	{
