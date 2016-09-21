@@ -11,6 +11,7 @@ import Reg;
  */
 class Player extends FlxSprite
 {
+	private var vidas:Int= 3;
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
@@ -18,6 +19,14 @@ class Player extends FlxSprite
 		
 		loadGraphic(AssetPaths.chutulu__png,16,16);
 		
+	}
+	public function getVidas():Int
+	{
+		return vidas;
+	}
+	public function restarVidas(danio:Int)
+	{
+		vidas -= danio;
 	}
 	override public function update(elapsed:Float):Void
 	{
@@ -44,6 +53,8 @@ class Player extends FlxSprite
 			x = (FlxG.width - this.width);
 			else if (x < 0)
 				x = 0;
+		if (vidas == 0)
+		destroy();
 	}
 	override public function destroy(): Void
 	{

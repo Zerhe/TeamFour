@@ -13,23 +13,33 @@ import sprites.Disparo;
 import sprites.Enemy;
 import sprites.Estructura;
 import sprites.Player;
+import sprites.Vidas;
 import Reg;
+import Std;
 
 class PlayState extends FlxState
 {
-	private var _x = 20;
-	private var _y = 18;
-	private var a = 40;
+	private var _x:Int = 20;
+	private var _y:Int = 18;
+	private var a:Int = 40;
+	private var b:Int = 120;
+	private var score:Int = 0;
+	private var txtScore : FlxText;
 	
-	private var player : Player;
+	private var player:Player;
 	private var enemy = new FlxTypedGroup<Enemy>();
 	private var estructura = new FlxTypedGroup<Estructura>();
+	private var sprVidas = new FlxTypedGroup<Vidas>();
 	
 	override public function create():Void
 	{
 		super.create();
+		
+		txtScore = new FlxText(0, 5, 0, "Score : " + Std.string(score), 8);
+		add(txtScore);
 		player = new Player(60, 120);
 		add(player);
+		
 		for (i in 0 ... 15)
 		{
 			enemy.members[i] = new Enemy(_x, _y);
@@ -65,6 +75,12 @@ class PlayState extends FlxState
 			add(estructura.members[i]);
 			a += 35;
 		}
+		for (i in 0...3)
+		{
+			sprVidas.members[i] = new Vidas(b, 5);
+			add(sprVidas.members[i]);
+			b += 10;
+		}
 	}
 
 	override public function update(elapsed:Float):Void
@@ -72,6 +88,9 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		
 		Reg.enemigo = enemy;
+		txtScore.destroy();
+		txtScore = new FlxText(0, 5, 0, "Score : " + Std.string(score), 8);
+		add(txtScore);
 		for (i in 0 ... 15)
 		{
 			if (FlxG.overlap(enemy.members[i], Reg.disparo))
@@ -79,11 +98,18 @@ class PlayState extends FlxState
 				enemy.members[i].destroy();
 				Reg.verificarVivos[i] = 0;
 				Reg.disparo.destroy();
+				if (i > 9)
+					score += 10;
+				if (i > 4 && i < 10)
+					score += 20;
+				if (i < 5)
+					score += 40;
 			}
 			if (FlxG.overlap(player, enemy.members[i].getDisparo()))
 			{
 				trace("pepito");
-				player.destroy();
+				sprVidas.members[player.getVidas() - 1].destroy();
+				player.restarVidas(1);
 				enemy.members[i].destroyDisparo();
 			}
 			if (FlxG.overlap(player, enemy.members[i]))
@@ -113,7 +139,6 @@ class PlayState extends FlxState
 				}
 			}
 		}
-		
 		if (FlxG.keys.justPressed.R) 
 		{
 			Reg.cantidadDisparo = 0;

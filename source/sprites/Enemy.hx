@@ -14,16 +14,13 @@ class Enemy extends FlxSprite
 {
 	private var disparo : DisparoEnemigo;
 	private var random : FlxRandom;
-	/*private var timerCount: Float = 0;
-	private var maxTimerCounter: Float = 1;
-	private var cont : Float = 0;*/
 	
 	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
 	
 		loadGraphic(AssetPaths.Enemigo01__png, true, 16, 16);
-		animation.add("move", [0, 1],3 , true);
+		animation.add("move", [0, 1], 3, true);
 		animation.play("move");
 		velocity.x = 20;
 		random = new FlxRandom();
@@ -52,13 +49,6 @@ class Enemy extends FlxSprite
 			Reg.verificarEnemigoIzq();
 		else if (x > FlxG.width - width)
 			Reg.verificarEnemigoDer();
-			
-		/*timerCount += elapsed;
-		cont += elapsed;
-		if (timerCount > maxTimerCounter)
-		{
-			timerCount = 0;
-		}*/
 	}
 	override public function destroy(): Void
 	{

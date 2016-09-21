@@ -16,8 +16,8 @@ class Estructura extends FlxSprite
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		makeGraphic(16,16);
-		color = 0xFF0000;
+		loadGraphic(AssetPaths.Estructuras__png, true, 16, 16);
+		//color = 0xFF0000;
 	}
 	public function recibirDanio(a : Int)
 	{
@@ -25,6 +25,16 @@ class Estructura extends FlxSprite
 	}
 	override public function update(elapsed:Float):Void
 	{
+		if (resistencia == 2)
+		{
+			animation.add("casiRoto", [1], 0, true);
+			animation.play("casiRoto");
+		}
+		if (resistencia == 1)
+		{
+			animation.add("roto", [2], 0, true);
+			animation.play("roto");
+		}
 		if (resistencia == 0)
 		{
 			destroy();
